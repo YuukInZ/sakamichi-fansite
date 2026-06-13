@@ -16,7 +16,7 @@ const MEMBERS = [
         note: "乃木坂46 5期生。5期生で最長身、癒し系の雰囲気が魅力。",
         img: "assets/images/ioki_mao.jpg", cheer: 5, debut: "2022年2月23日",
         points: ["圧倒的な透明感", "癒し系雰囲気", "ポカポカした性格"],
-        songs: [{ title: "絶望の一秒前", type: "under" }, { title: "バンドエイド剥がすような別れ方", type: "under" }],
+        songs: [{ title: "絶望の一秒前", type: "under" }],
         relations: [{ name: "中西アルノ", type: "同期" }]
     },
     {
@@ -25,7 +25,7 @@ const MEMBERS = [
         note: "乃木坂46 5期生。独特な雰囲気とステージでの魅力が光る。",
         img: "assets/images/nakanishi_aruno.jpg", cheer: 5, debut: "2022年2月23日",
         points: ["アーティスティックな感覚", "独特な世界観", "モデルとしての表現力"],
-        songs: [{ title: "絶望の一秒前", type: "under" }, { title: "いつかできるから今日できる", type: "選抜" }],
+        songs: [{ title: "絶望の一秒前", type: "under" }],
         relations: [{ name: "五百城茉央", type: "同期" }]
     },
     {
@@ -665,6 +665,93 @@ function initNav() {
         });
         links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === current));
     });
+}
+
+
+// ===== Song Editor =====
+function openSongEditor() {
+    const overlay = document.getElementById("song-editor-overlay");
+    const content = document.getElementById("song-editor-content");
+    if (!content) return;
+    
+    content.innerHTML = `
+        <div class="modal-header">
+            <div class="modal-meta">
+                <h2>推し曲を編集</h2>
+                <div class="modal-sub">各メンバーの推し曲を追加・削除</div>
+            </div>
+        </div>
+        <div class="song-editor-list">
+            ${MEMBERS.map(m => {
+                const gc = GROUP_CLASS[m.group];
+                const songsHtml = m.songs.map((s, i) => `
+                    <div class="song-editor-item">
+                        <span class="song-editor-title">${s.title}</span>
+                        <span class="song-editor-type">${s.type}</span>
+                        <button class="song-editor-del" onclick="deleteSong(${m.rank}, ${i})">×</button>
+                    </div>
+                `).join('');
+                return `
+                    <div class="song-editor-member">
+                        <div class="song-editor-member-header">
+                            <div class="song-editor-avatar ${gc} has-img" style="background-image:url('${m.img}')"></div>
+                            <span class="song-editor-name">${m.name}</span>
+                        </div>
+                        <div class="song-editor-songs">
+                            ${songsHtml || '<span class="song-editor-empty">まだ曲が登録されていません</span>'}
+                        </div>
+                        <div class="song-editor-add">
+                            <input type="text" class="song-editor-input" id="song-title-${m.rank}" placeholder="曲名">
+                            <select class="song-editor-select" id="song-type-${m.rank}">
+                                <option value="選抜">選抜</option>
+                                <option value="under">under</option>
+                                <option value="unit">unit</option>
+                                <option value="solo">solo</option>
+                            </select>
+                            <button class="song-editor-btn" onclick="addSong(${m.rank})">追加</button>
+                        </div>
+                    </div>
+                `;
+            }).join('')}
+        </div>
+    `;
+    
+    overlay.classList.add("show");
+    document.body.style.overflow = "hidden";
+}
+
+function closeSongEditor() {
+    document.getElementById("song-editor-overlay").classList.remove("show");
+    document.body.style.overflow = "";
+}
+
+function addSong(rank) {
+    const m = MEMBERS.find(x => x.rank === rank);
+    const titleEl = document.getElementById(`song-title-${rank}`);
+    const typeEl = document.getElementById(`song-type-${rank}`);
+    
+    if (!m || !titleEl || !typeEl) return;
+    
+    const title = titleEl.value.trim();
+    const type = typeEl.value;
+    
+    if (!title) { showToast("曲名を入力してね"); return; }
+    
+    m.songs.push({ title, type });
+    showToast(`${m.name}の「${title}」を追加しました！`);
+    openSongEditor(); // refresh
+    renderSongs();
+}
+
+function deleteSong(rank, songIndex) {
+    const m = MEMBERS.find(x => x.rank === rank);
+    if (!m || songIndex < 0 || songIndex >= m.songs.length) return;
+    
+    const song = m.songs[songIndex];
+    m.songs.splice(songIndex, 1);
+    showToast(`「${song.title}」を削除しました`);
+    openSongEditor(); // refresh
+    renderSongs();
 }
 
 // ===== Init =====

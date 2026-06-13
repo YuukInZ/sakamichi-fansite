@@ -123,7 +123,7 @@
                 <div class="section-header">
                     <span class="section-tag">楽曲</span>
                     <h2>推し曲コレクション</h2>
-                    <p>メンバー別おすす曲</p>
+                    <p>メンバー別おすす曲 · <button class="edit-btn" onclick="openSongEditor()">編集</button></p>
                 </div>
                 <div class="songs-grid" id="songs-grid"></div>
             </div>
@@ -220,6 +220,14 @@
         <div class="modal-body" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeModal()">×</button>
             <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <!-- Song Editor Modal -->
+    <div class="modal-overlay" id="song-editor-overlay" onclick="closeSongEditor()">
+        <div class="modal-body" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeSongEditor()">×</button>
+            <div id="song-editor-content"></div>
         </div>
     </div>
 
