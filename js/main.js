@@ -1,4 +1,4 @@
-// ===== よるこの推しランキング =====
+// ===== よるこのお気に入りランキング =====
 
 const MEMBERS = [
     {
@@ -300,10 +300,10 @@ function openModal(rank) {
         <div class="modal-body-inner">
             <p class="modal-note">${m.note}</p>
             
-            <h3 class="modal-section-title">推しポイント</h3>
+            <h3 class="modal-section-title">好きポイント</h3>
             <div class="modal-points">${pointsHtml}</div>
             
-            <h3 class="modal-section-title">推し曲</h3>
+            <h3 class="modal-section-title">好きな曲</h3>
             <div class="modal-songs">${songsHtml}</div>
             
             <h3 class="modal-section-title">関係</h3>
@@ -471,7 +471,7 @@ function postActivity() {
     const date = dateEl.value;
     const note = noteEl.value.trim();
     
-    if (!member) { showToast("推しメンを選んでね"); return; }
+    if (!member) { showToast("好きメンを選んでね"); return; }
     if (!date) { showToast("日付を選んでね"); return; }
     
     const acts = loadActivities();
@@ -561,8 +561,8 @@ function openSongEditor() {
     content.innerHTML = `
         <div class="modal-header">
             <div class="modal-meta">
-                <h2>推し曲を編集</h2>
-                <div class="modal-sub">各メンバーの推し曲を追加・削除</div>
+                <h2>好きな曲を編集</h2>
+                <div class="modal-sub">各メンバーの好きな曲を追加・削除</div>
             </div>
         </div>
         <div class="song-editor-list">
