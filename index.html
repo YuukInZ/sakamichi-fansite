@@ -19,11 +19,10 @@
         </div>
         <div class="nav-links">
             <a href="#home" class="nav-link active">ランキング</a>
-            <a href="#gallery-cheer" class="nav-link">図鑑</a>
+            <a href="#gallery" class="nav-link">図鑑</a>
             <a href="#countdown-calendar" class="nav-link">カレンダー</a>
             <a href="#chart-songs" class="nav-link">チャート</a>
             <a href="#activity-gacha" class="nav-link">推し活</a>
-            <a href="#wall" class="nav-link">メッセージ</a>
             <a href="#about" class="nav-link">About</a>
         </div>
         <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">
@@ -56,31 +55,21 @@
         </div>
     </section>
 
-    <!-- Gallery + Cheer -->
-    <section id="gallery-cheer" class="dual-section">
-        <div class="container dual-row">
-            <div class="dual-col">
-                <div class="section-header">
-                    <span class="section-tag">図鑑</span>
-                    <h2>推し図鑑</h2>
-                    <p>全メンバー · タップで詳細</p>
-                </div>
-                <div class="gallery-filters">
-                    <button class="g-filter active" data-filter="all">全員</button>
-                    <button class="g-filter" data-filter="nogizaka">乃木坂</button>
-                    <button class="g-filter" data-filter="sakurazaka">櫻坂</button>
-                    <button class="g-filter" data-filter="hinatazaka">日向坂</button>
-                </div>
-                <div class="gallery-grid" id="gallery-grid"></div>
+    <!-- Gallery -->
+    <section id="gallery" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">図鑑</span>
+                <h2>推し図鑑</h2>
+                <p>全メンバー · タップで詳細</p>
             </div>
-            <div class="dual-col">
-                <div class="section-header">
-                    <span class="section-tag">推し活</span>
-                    <h2>応援パネル</h2>
-                    <p>推しへの応援度を記録</p>
-                </div>
-                <div class="cheer-cards" id="cheer-cards"></div>
+            <div class="gallery-filters">
+                <button class="g-filter active" data-filter="all">全員</button>
+                <button class="g-filter" data-filter="nogizaka">乃木坂</button>
+                <button class="g-filter" data-filter="sakurazaka">櫻坂</button>
+                <button class="g-filter" data-filter="hinatazaka">日向坂</button>
             </div>
+            <div class="gallery-grid" id="gallery-grid"></div>
         </div>
     </section>
 
@@ -113,7 +102,7 @@
                 <div class="section-header">
                     <span class="section-tag">チャート</span>
                     <h2>推し度チャート</h2>
-                    <p>全メンバーの応援度比較</p>
+                    <p>全メンバーの推し度比較</p>
                 </div>
                 <div class="chart-wrap">
                     <canvas id="cheerChart"></canvas>
@@ -173,28 +162,6 @@
                     <button class="gacha-btn" onclick="rollGacha()">ガチャを回す</button>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Wall -->
-    <section id="wall" class="wall-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">ファン交流</span>
-                <h2>推しメッセージ</h2>
-                <p>ファン名と推しメンを選択してメッセージを送る</p>
-            </div>
-            <div class="wall-form">
-                <div class="wall-form-row">
-                    <input type="text" id="wall-fanname" class="wall-input" placeholder="ファン名">
-                    <select id="wall-member" class="wall-select">
-                        <option value="">推しメンを選択</option>
-                    </select>
-                </div>
-                <textarea id="wall-text" class="wall-input" placeholder="推しへのメッセージを書いてね…" rows="3"></textarea>
-                <button class="wall-submit" onclick="postWall()">送信</button>
-            </div>
-            <div class="wall-list" id="wall-list"></div>
         </div>
     </section>
 

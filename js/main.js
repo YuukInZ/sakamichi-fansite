@@ -90,6 +90,11 @@ const MEMBERS = [
     },
 ];
 
+// 生成随机推度分数(60-100)
+MEMBERS.forEach(m => {
+    m.score = Math.floor(Math.random() * 41) + 60; // 60-100
+});
+
 const GROUP_CLASS = { nogizaka: "nogi", sakurazaka: "saku", hinatazaka: "hina" };
 const GROUP_COLORS = { nogizaka: "#9b59b6", sakurazaka: "#ff69b4", hinatazaka: "#87ceeb" };
 
@@ -110,7 +115,7 @@ function showToast(msg) {
     setTimeout(() => t.classList.remove("show"), 2500);
 }
 
-// ===== TOP3 =====
+// ===== TOP3 with Score =====
 function renderTop3() {
     const el = document.getElementById("rank-top3");
     if (!el) return;
@@ -127,12 +132,16 @@ function renderTop3() {
                 <div class="top3-avatar ${gc} has-img" style="background-image:url('${m.img}')"></div>
                 <div class="top3-name">${m.name}</div>
                 <div class="top3-group">${m.groupName} · ${m.gen}</div>
+                <div class="top3-score" data-score="${m.score}">
+                    <span class="score-label">推し度</span>
+                    <span class="score-num">${m.score}</span>
+                </div>
             </div>
         `;
     }).join("");
 }
 
-// ===== Ranking List =====
+// ===== Ranking List with Score =====
 function renderRanking() {
     const el = document.getElementById("rank-list");
     if (!el) return;
@@ -154,20 +163,13 @@ function renderRanking() {
                         <span><span class="dot"></span>${m.hometown}出身</span>
                     </div>
                 </div>
-                <div class="rank-like" onclick="event.stopPropagation(); cheerMember(${m.rank})">♡</div>
+                <div class="rank-score" data-score="${m.score}">
+                    <span class="score-label">推し度</span>
+                    <span class="score-num">${m.score}</span>
+                </div>
             </div>
         `;
     }).join("");
-}
-
-function cheerMember(rank) {
-    const m = MEMBERS.find(x => x.rank === rank);
-    if (m) {
-        m.cheer = Math.min(5, m.cheer + 1);
-        showToast(`${m.name} の応援度が上がった！♡`);
-        renderCheer();
-        renderChart();
-    }
 }
 
 // ===== Gallery =====
@@ -195,44 +197,6 @@ function renderGallery() {
             });
         });
     });
-}
-
-// ===== Cheer Panel =====
-function renderCheer() {
-    const el = document.getElementById("cheer-cards");
-    if (!el) return;
-    
-    el.innerHTML = MEMBERS.map(m => {
-        const gc = GROUP_CLASS[m.group];
-        const pct = (m.cheer / 5) * 100;
-        return `
-            <div class="cheer-card" data-rank="${m.rank}">
-                <div class="cheer-card-header">
-                    <div class="cheer-avatar ${gc} has-img" style="background-image:url('${m.img}')"></div>
-                    <div class="cheer-info">
-                        <h4>${m.name}</h4>
-                        <span>${m.groupName} · ${m.gen}</span>
-                    </div>
-                </div>
-                <div class="cheer-bar">
-                    <div class="cheer-fill" style="width:${pct}%"></div>
-                </div>
-                <div class="cheer-btns">
-                    ${[1,2,3,4,5].map(i => `<button class="cheer-btn ${i <= m.cheer ? 'active' : ''}" onclick="event.stopPropagation(); setCheer(${m.rank}, ${i})">${'♡'.repeat(i)}</button>`).join('')}
-                </div>
-            </div>
-        `;
-    }).join("");
-}
-
-function setCheer(rank, level) {
-    const m = MEMBERS.find(x => x.rank === rank);
-    if (m) {
-        m.cheer = level;
-        showToast(`${m.name} の応援度: ${'♡'.repeat(level)}`);
-        renderCheer();
-        renderChart();
-    }
 }
 
 // ===== Countdown =====
@@ -387,8 +351,8 @@ function renderChart() {
         data: {
             labels: MEMBERS.map(m => m.name),
             datasets: [{
-                label: '応援度',
-                data: MEMBERS.map(m => m.cheer),
+                label: '推し度',
+                data: MEMBERS.map(m => m.score),
                 backgroundColor: MEMBERS.map(m => GROUP_COLORS[m.group] + 'cc'),
                 borderColor: MEMBERS.map(m => GROUP_COLORS[m.group]),
                 borderWidth: 2,
@@ -411,7 +375,7 @@ function renderChart() {
             scales: {
                 y: {
                     beginAtZero: true,
-                    max: 5,
+                    max: 100,
                     grid: { color: 'rgba(255,255,255,0.03)' },
                     ticks: { color: '#5a5a70', font: { family: 'Outfit' } }
                 },
@@ -566,108 +530,6 @@ function rollGacha() {
     }, 100);
 }
 
-// ===== Message Wall (Fixed) =====
-function loadWallMessages() {
-    try {
-        const raw = localStorage.getItem("yoruko-wall");
-        return raw ? JSON.parse(raw) : [];
-    } catch { return []; }
-}
-
-function saveWallMessages(msgs) {
-    localStorage.setItem("yoruko-wall", JSON.stringify(msgs));
-}
-
-function renderWall() {
-    const select = document.getElementById("wall-member");
-    const list = document.getElementById("wall-list");
-    if (!select || !list) return;
-    
-    // Populate select (only once)
-    if (select.children.length <= 1) {
-        MEMBERS.forEach(m => {
-            const opt = document.createElement("option");
-            opt.value = m.name;
-            opt.textContent = m.name;
-            select.appendChild(opt);
-        });
-    }
-    
-    // Render messages
-    const msgs = loadWallMessages();
-    if (msgs.length === 0) {
-        list.innerHTML = '<div class="wall-empty">まだメッセージがありません。最初のメッセージを送ってね！</div>';
-        return;
-    }
-    
-    list.innerHTML = msgs.slice().reverse().map(msg => {
-        const m = MEMBERS.find(x => x.name === msg.member);
-        const gc = m ? GROUP_CLASS[m.group] : 'nogi';
-        const img = m ? `style="background-image:url('${m.img}')"` : '';
-        return `
-            <div class="wall-msg">
-                <div class="wall-msg-avatar ${gc} has-img" ${img}></div>
-                <div class="wall-msg-body">
-                    <div class="wall-msg-header">
-                        <span class="wall-msg-name">${escapeHtml(msg.fanname || '名無しファン')}</span>
-                        <span class="wall-msg-arrow">→</span>
-                        <span class="wall-msg-target">${msg.member}</span>
-                        <span class="wall-msg-time">${msg.time}</span>
-                    </div>
-                    <div class="wall-msg-text">${escapeHtml(msg.text)}</div>
-                </div>
-            </div>
-        `;
-    }).join('');
-}
-
-function postWall() {
-    const fannameEl = document.getElementById("wall-fanname");
-    const memberSel = document.getElementById("wall-member");
-    const textEl = document.getElementById("wall-text");
-    
-    const fanname = fannameEl.value.trim() || "名無しファン";
-    const member = memberSel.value;
-    const text = textEl.value.trim();
-    
-    if (!member) { showToast("推しメンを選んでね"); return; }
-    if (!text) { showToast("メッセージを書いてね"); return; }
-    
-    const msgs = loadWallMessages();
-    msgs.push({
-        fanname,
-        member,
-        text,
-        time: new Date().toLocaleString('ja-JP', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
-    });
-    
-    saveWallMessages(msgs);
-    textEl.value = "";
-    renderWall();
-    showToast("メッセージを送信しました！");
-}
-
-function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-}
-
-// ===== Nav Highlight =====
-function initNav() {
-    const links = document.querySelectorAll(".nav-link");
-    const sections = ["#home", "#gallery-cheer", "#countdown-calendar", "#chart-songs", "#activity-gacha", "#wall", "#about"];
-    window.addEventListener("scroll", () => {
-        let current = "#home";
-        sections.forEach(sel => {
-            const el = document.querySelector(sel);
-            if (el && window.scrollY >= el.offsetTop - 200) current = sel;
-        });
-        links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === current));
-    });
-}
-
-
 // ===== Song Editor =====
 function openSongEditor() {
     const overlay = document.getElementById("song-editor-overlay");
@@ -739,7 +601,7 @@ function addSong(rank) {
     
     m.songs.push({ title, type });
     showToast(`${m.name}の「${title}」を追加しました！`);
-    openSongEditor(); // refresh
+    openSongEditor();
     renderSongs();
 }
 
@@ -750,8 +612,28 @@ function deleteSong(rank, songIndex) {
     const song = m.songs[songIndex];
     m.songs.splice(songIndex, 1);
     showToast(`「${song.title}」を削除しました`);
-    openSongEditor(); // refresh
+    openSongEditor();
     renderSongs();
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// ===== Nav Highlight =====
+function initNav() {
+    const links = document.querySelectorAll(".nav-link");
+    const sections = ["#home", "#gallery", "#countdown-calendar", "#chart-songs", "#activity-gacha", "#about"];
+    window.addEventListener("scroll", () => {
+        let current = "#home";
+        sections.forEach(sel => {
+            const el = document.querySelector(sel);
+            if (el && window.scrollY >= el.offsetTop - 200) current = sel;
+        });
+        links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === current));
+    });
 }
 
 // ===== Init =====
@@ -759,13 +641,11 @@ document.addEventListener("DOMContentLoaded", () => {
     renderTop3();
     renderRanking();
     renderGallery();
-    renderCheer();
     renderCountdown();
     renderCalendar();
     renderChart();
     renderSongs();
     renderActivities();
     initActivitySelect();
-    renderWall();
     initNav();
 });
