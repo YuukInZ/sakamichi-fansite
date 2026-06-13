@@ -1048,3 +1048,60 @@ body {
 .wall-msg-name { font-size: 0.9rem; font-weight: 700; }
 .wall-msg-time { font-size: 0.75rem; color: var(--text-dim); }
 .wall-msg-text { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
+
+/* ===== Dual Layout ===== */
+.dual-section { padding: 30px 0; position: relative; z-index: 2; }
+.dual-section.alt { background: var(--bg-1); }
+.dual-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.dual-col {
+    min-width: 0;
+}
+.dual-col .section-header {
+    text-align: left;
+    margin-bottom: 16px;
+}
+.dual-col .section-header .section-tag { margin-bottom: 8px; }
+.dual-col .section-header h2 { font-size: 1.4rem; margin-bottom: 2px; }
+.dual-col .section-header p { font-size: 0.85rem; }
+
+/* countdown in dual col */
+.dual-col .countdown-card { margin: 0; }
+.dual-col .calendar-wrap {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+
+/* chart + songs in dual */
+.dual-col .chart-wrap {
+    padding: 16px;
+    height: 280px;
+}
+.dual-col .songs-grid {
+    max-height: 320px;
+    overflow-y: auto;
+    grid-template-columns: 1fr;
+}
+
+/* wall form compact */
+.wall-section { padding: 30px 0; }
+
+/* about */
+.about-section { padding: 30px 0; }
+
+/* responsive */
+@media (max-width: 768px) {
+    .dual-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .dual-col .section-header { text-align: center; }
+    .dual-col .chart-wrap { height: 250px; }
+    .dual-col .songs-grid { max-height: none; }
+    .dual-col .calendar-wrap { grid-template-columns: 1fr; }
+}
