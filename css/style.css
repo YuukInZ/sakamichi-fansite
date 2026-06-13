@@ -310,7 +310,7 @@ body {
 .top3-avatar.nogi { border-color: rgba(155,89,182,0.5); }
 .top3-avatar.saku { border-color: rgba(255,105,180,0.5); }
 .top3-avatar.hina { border-color: rgba(135,206,235,0.5); }
-.top3-avatar.has-img { background: none; }
+.top3-avatar.has-img { background-color: transparent; }
 
 .top3-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
 .top3-group {
@@ -389,7 +389,8 @@ body {
 .rank-avatar.nogi { border-color: rgba(155,89,182,0.4); }
 .rank-avatar.saku { border-color: rgba(255,105,180,0.4); }
 .rank-avatar.hina { border-color: rgba(135,206,235,0.4); }
-.rank-avatar.has-img { background: none; }
+.rank-avatar.has-img { background-color: transparent; }
+.rank-avatar.has-img { background-size: cover; background-position: center top; }
 .rank-info { flex: 1; min-width: 0; }
 .rank-name {
     font-size: 1rem;
@@ -521,7 +522,7 @@ body {
 .g-avatar.nogi { border-color: rgba(155,89,182,0.4); }
 .g-avatar.saku { border-color: rgba(255,105,180,0.4); }
 .g-avatar.hina { border-color: rgba(135,206,235,0.4); }
-.g-avatar.has-img { background: none; }
+.g-avatar.has-img { background-color: transparent; background-size: cover; background-position: center top; }
 .g-name { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
 .g-group { font-size: 0.78rem; color: var(--text-dim); font-weight: 500; }
 
@@ -567,7 +568,7 @@ body {
 .cheer-avatar.nogi { background: rgba(155,89,182,0.15); color: #c8a0e0; border: 2px solid rgba(155,89,182,0.3); }
 .cheer-avatar.saku { background: rgba(255,105,180,0.15); color: #ffc0e0; border: 2px solid rgba(255,105,180,0.3); }
 .cheer-avatar.hina { background: rgba(135,206,235,0.15); color: #b0d8f0; border: 2px solid rgba(135,206,235,0.3); }
-.cheer-avatar.has-img { background: none; }
+.cheer-avatar.has-img { background-color: transparent; background-size: cover; background-position: center top; }
 .cheer-info h4 { font-size: 1rem; font-weight: 700; margin-bottom: 2px; }
 .cheer-info span { font-size: 0.78rem; color: var(--text-muted); }
 .cheer-bar {
