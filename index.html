@@ -21,9 +21,10 @@
             <a href="#home" class="nav-link active">ランキング</a>
             <a href="#gallery-cheer" class="nav-link">図鑑</a>
             <a href="#countdown-calendar" class="nav-link">カレンダー</a>
-            <a href="#chart-wall" class="nav-link">チャート</a>
-            <a href="#songs-about" class="nav-link">楽曲</a>
+            <a href="#chart-songs" class="nav-link">チャート</a>
+            <a href="#activity-gacha" class="nav-link">推し活</a>
             <a href="#wall" class="nav-link">メッセージ</a>
+            <a href="#about" class="nav-link">About</a>
         </div>
         <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">
             <span></span><span></span><span></span>
@@ -106,7 +107,7 @@
     </section>
 
     <!-- Chart + Songs -->
-    <section id="chart-wall" class="dual-section">
+    <section id="chart-songs" class="dual-section">
         <div class="container dual-row">
             <div class="dual-col">
                 <div class="section-header">
@@ -129,18 +130,67 @@
         </div>
     </section>
 
+    <!-- Activity + Gacha -->
+    <section id="activity-gacha" class="dual-section alt">
+        <div class="container dual-row">
+            <div class="dual-col">
+                <div class="section-header">
+                    <span class="section-tag">イベント</span>
+                    <h2>推し活記録</h2>
+                    <p>参加したイベントを記録</p>
+                </div>
+                <div class="activity-form">
+                    <div class="wall-form-row">
+                        <select id="act-member" class="wall-select">
+                            <option value="">推しメンを選択</option>
+                        </select>
+                        <select id="act-type" class="wall-select">
+                            <option value="握手会">握手会</option>
+                            <option value="ミニライブ">ミニライブ</option>
+                            <option value="個別握手会">個別握手会</option>
+                            <option value="写真会">写真会</option>
+                            <option value="オンラインお話し会">オンラインお話し会</option>
+                            <option value="その他">その他</option>
+                        </select>
+                    </div>
+                    <input type="date" id="act-date" class="wall-input">
+                    <textarea id="act-note" class="wall-input" placeholder="メモ…" rows="2"></textarea>
+                    <button class="wall-submit" onclick="postActivity()">記録</button>
+                </div>
+                <div class="activity-list" id="activity-list"></div>
+            </div>
+            <div class="dual-col">
+                <div class="section-header">
+                    <span class="section-tag">ガチャ</span>
+                    <h2>推しガチャ</h2>
+                    <p>ランダムで推しメンが出現！</p>
+                </div>
+                <div class="gacha-machine" id="gacha-machine">
+                    <div class="gacha-display" id="gacha-display">
+                        <div class="gacha-question">❓</div>
+                        <div class="gacha-label">ボタンを押してね</div>
+                    </div>
+                    <button class="gacha-btn" onclick="rollGacha()">ガチャを回す</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Wall -->
     <section id="wall" class="wall-section">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">ファン交流</span>
                 <h2>推しメッセージ</h2>
-                <p>推しへメッセージを送る</p>
+                <p>ファン名と推しメンを選択してメッセージを送る</p>
             </div>
             <div class="wall-form">
-                <select id="wall-member" class="wall-select">
-                    <option value="">メンバーを選択</option>
-                </select>
+                <div class="wall-form-row">
+                    <input type="text" id="wall-fanname" class="wall-input" placeholder="ファン名">
+                    <select id="wall-member" class="wall-select">
+                        <option value="">推しメンを選択</option>
+                    </select>
+                </div>
                 <textarea id="wall-text" class="wall-input" placeholder="推しへのメッセージを書いてね…" rows="3"></textarea>
                 <button class="wall-submit" onclick="postWall()">送信</button>
             </div>
@@ -162,7 +212,7 @@
     </section>
 
     <footer class="footer">
-        <p>© 2025 よるこ · 個人ファンサイト · 非公式</p>
+        <p>© 2026 よるこ · 個人ファンサイト · 非公式</p>
     </footer>
 
     <!-- Member Modal -->

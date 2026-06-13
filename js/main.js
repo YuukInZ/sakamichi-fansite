@@ -5,131 +5,88 @@ const MEMBERS = [
         rank: 1, name: "林瑠奈", group: "nogizaka", groupName: "乃木坂46", gen: "4期生",
         birth: "2003年10月2日", hometown: "神奈川県",
         note: "乃木坂46 4期生。透明感のある歌声と表現力でファンを魅了。",
-        img: "assets/images/hayashi_runa.jpg",
-        cheer: 5,
-        debut: "2018年8月19日",
+        img: "assets/images/hayashi_runa.jpg", cheer: 5, debut: "2018年8月19日",
         points: ["透明感のある歌声", "落ち着いた雰囲気", "MCでの天然発言"],
-        songs: [
-            { title: "I see…", type: "under" },
-            { title: "ジャンピングジョーカーフラッシュ", type: "unit" }
-        ],
+        songs: [{ title: "I see…", type: "under" }, { title: "ジャンピングジョーカーフラッシュ", type: "unit" }],
         relations: [{ name: "弓木奈於", type: "同期" }]
     },
     {
         rank: 2, name: "五百城茉央", group: "nogizaka", groupName: "乃木坂46", gen: "5期生",
         birth: "2005年7月29日", hometown: "兵庫県",
         note: "乃木坂46 5期生。5期生で最長身、癒し系の雰囲気が魅力。",
-        img: "assets/images/ioki_mao.jpg",
-        cheer: 5,
-        debut: "2022年2月23日",
+        img: "assets/images/ioki_mao.jpg", cheer: 5, debut: "2022年2月23日",
         points: ["圧倒的な透明感", "癒し系雰囲気", "ポカポカした性格"],
-        songs: [
-            { title: "絶望の一秒前", type: "under" },
-            { title: "バンドエイド剥がすような別れ方", type: "under" }
-        ],
+        songs: [{ title: "絶望の一秒前", type: "under" }, { title: "バンドエイド剥がすような別れ方", type: "under" }],
         relations: [{ name: "中西アルノ", type: "同期" }]
     },
     {
         rank: 3, name: "中西アルノ", group: "nogizaka", groupName: "乃木坂46", gen: "5期生",
         birth: "2003年3月17日", hometown: "千葉県",
         note: "乃木坂46 5期生。独特な雰囲気とステージでの魅力が光る。",
-        img: "assets/images/nakanishi_aruno.jpg",
-        cheer: 5,
-        debut: "2022年2月23日",
+        img: "assets/images/nakanishi_aruno.jpg", cheer: 5, debut: "2022年2月23日",
         points: ["アーティスティックな感覚", "独特な世界観", "モデルとしての表現力"],
-        songs: [
-            { title: "絶望の一秒前", type: "under" },
-            { title: "いつかできるから今日できる", type: "選抜" }
-        ],
+        songs: [{ title: "絶望の一秒前", type: "under" }, { title: "いつかできるから今日できる", type: "選抜" }],
         relations: [{ name: "五百城茉央", type: "同期" }]
     },
     {
         rank: 4, name: "的野美青", group: "sakurazaka", groupName: "櫻坂46", gen: "3期生",
         birth: "2006年11月8日", hometown: "福岡県",
         note: "櫻坂46 3期生。お披露目時からフロント列を務める逸材。",
-        img: "assets/images/matono_mio.jpg",
-        cheer: 4,
-        debut: "2023年1月5日",
+        img: "assets/images/matono_mio.jpg", cheer: 4, debut: "2023年1月5日",
         points: ["圧倒的な存在感", "ダンスのキレ", "福岡弁の可愛さ"],
-        songs: [
-            { title: "桜月", type: "選抜" },
-            { title: "心の花", type: "unit" }
-        ],
+        songs: [{ title: "桜月", type: "選抜" }, { title: "心の花", type: "unit" }],
         relations: [{ name: "山田桃実", type: "後輩" }]
     },
     {
         rank: 5, name: "弓木奈於", group: "nogizaka", groupName: "乃木坂46", gen: "4期生",
         birth: "1999年2月3日", hometown: "京都府",
         note: "乃木坂46 4期生。京都出身。大人な魅力と歌唱力が武器。",
-        img: "assets/images/yumiki_nao.jpg",
-        cheer: 4,
-        debut: "2018年8月19日",
+        img: "assets/images/yumiki_nao.jpg", cheer: 4, debut: "2018年8月19日",
         points: ["京都弁の可愛さ", "大人な雰囲気", "歌唱力"],
-        songs: [
-            { title: "I see…", type: "under" },
-            { title: "僕は僕を好きになる", type: "選抜" }
-        ],
+        songs: [{ title: "I see…", type: "under" }, { title: "僕は僕を好きになる", type: "選抜" }],
         relations: [{ name: "林瑠奈", type: "同期" }]
     },
     {
         rank: 6, name: "高橋未来虹", group: "hinatazaka", groupName: "日向坂46", gen: "3期生",
         birth: "2003年2月17日", hometown: "東京都",
         note: "日向坂46 3期生。笑顔が素敵で多才なメンバー。",
-        img: "assets/images/takahashi_mikuni.jpg",
-        cheer: 4,
-        debut: "2021年8月7日",
+        img: "assets/images/takahashi_mikuni.jpg", cheer: 4, debut: "2021年8月7日",
         points: ["眩しい笑顔", "多才な才能", "ポジティブな性格"],
-        songs: [
-            { title: "僕なんか", type: "選抜" },
-            { title: "アザトカワイイ", type: "unit" }
-        ],
+        songs: [{ title: "僕なんか", type: "選抜" }, { title: "アザトカワイイ", type: "unit" }],
         relations: [{ name: "正源司陽子", type: "後輩" }]
     },
     {
         rank: 7, name: "正源司陽子", group: "hinatazaka", groupName: "日向坂46", gen: "4期生",
         birth: "2007年2月14日", hometown: "兵庫県",
         note: "日向坂46 4期生。兵庫県芦屋市出身。元気いっぱいの最年少。",
-        img: "assets/images/shogenji_yoko.jpg",
-        cheer: 4,
-        debut: "2024年3月5日",
+        img: "assets/images/shogenji_yoko.jpg", cheer: 4, debut: "2024年3月5日",
         points: ["無邪気な笑顔", "元気いっぱい", "若さと可能性"],
-        songs: [
-            { title: "君はハニーデュー", type: "選抜" }
-        ],
+        songs: [{ title: "君はハニーデュー", type: "選抜" }],
         relations: [{ name: "海邉朱莉", type: "同じ日の誕生日" }]
     },
     {
         rank: 8, name: "海邉朱莉", group: "nogizaka", groupName: "乃木坂46", gen: "6期生",
         birth: "2007年2月14日", hometown: "兵庫県",
         note: "乃木坂46 6期生。正源司陽子と同じ2月14日生まれ。",
-        img: "assets/images/kaibe_akari.jpg",
-        cheer: 3,
-        debut: "2025年2月19日",
+        img: "assets/images/kaibe_akari.jpg", cheer: 3, debut: "2025年2月19日",
         points: ["驚異的な若さ", "兵庫県出身", "新鮮な魅力"],
-        songs: [],
-        relations: [{ name: "正源司陽子", type: "同じ日の誕生日" }]
+        songs: [], relations: [{ name: "正源司陽子", type: "同じ日の誕生日" }]
     },
     {
         rank: 9, name: "瀬戸口心月", group: "nogizaka", groupName: "乃木坂46", gen: "6期生",
         birth: "2005年7月16日", hometown: "鹿児島県",
         note: "乃木坂46 6期生。南国鹿児島出身の新星。",
-        img: "assets/images/setoguchi_mitsuki.jpg",
-        cheer: 3,
-        debut: "2025年2月19日",
+        img: "assets/images/setoguchi_mitsuki.jpg", cheer: 3, debut: "2025年2月19日",
         points: ["南国の明るさ", "鹿児島弁の魅力", "新しい可能性"],
-        songs: [],
-        relations: []
+        songs: [], relations: []
     },
     {
         rank: 10, name: "山田桃実", group: "sakurazaka", groupName: "櫻坂46", gen: "4期生",
         birth: "2008年7月20日", hometown: "岡山県",
         note: "櫻坂46 4期生。岡山県出身の16歳の新星。",
-        img: "assets/images/yamada_momomi.jpg",
-        cheer: 3,
-        debut: "2025年4月14日",
+        img: "assets/images/yamada_momomi.jpg", cheer: 3, debut: "2025年4月14日",
         points: ["最年少の可能性", "岡山県のご当地感", "成長を見守る楽しさ"],
-        songs: [],
-        relations: [{ name: "的野美青", type: "先輩" }]
+        songs: [], relations: [{ name: "的野美青", type: "先輩" }]
     },
 ];
 
@@ -324,7 +281,6 @@ function openModal(rank) {
     const m = MEMBERS.find(x => x.rank === rank);
     if (!m) return;
     const gc = GROUP_CLASS[m.group];
-    const color = GROUP_COLORS[m.group];
     
     const pointsHtml = m.points.map(p => `<span class="modal-point">${p}</span>`).join('');
     
@@ -385,7 +341,6 @@ function renderCalendar() {
     
     const months = ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"];
     
-    // Group members by birth month
     const byMonth = {};
     MEMBERS.forEach(m => {
         const match = m.birth.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
@@ -434,10 +389,7 @@ function renderChart() {
             datasets: [{
                 label: '応援度',
                 data: MEMBERS.map(m => m.cheer),
-                backgroundColor: MEMBERS.map(m => {
-                    const c = GROUP_COLORS[m.group];
-                    return c + 'cc';
-                }),
+                backgroundColor: MEMBERS.map(m => GROUP_COLORS[m.group] + 'cc'),
                 borderColor: MEMBERS.map(m => GROUP_COLORS[m.group]),
                 borderWidth: 2,
                 borderRadius: 8,
@@ -499,7 +451,122 @@ function renderSongs() {
     }).join('');
 }
 
-// ===== Message Wall =====
+// ===== Activity Log =====
+function loadActivities() {
+    try {
+        const raw = localStorage.getItem("yoruko-activities");
+        return raw ? JSON.parse(raw) : [];
+    } catch { return []; }
+}
+
+function saveActivities(acts) {
+    localStorage.setItem("yoruko-activities", JSON.stringify(acts));
+}
+
+function initActivitySelect() {
+    const sel = document.getElementById("act-member");
+    if (!sel || sel.children.length > 1) return;
+    MEMBERS.forEach(m => {
+        const opt = document.createElement("option");
+        opt.value = m.name;
+        opt.textContent = m.name;
+        sel.appendChild(opt);
+    });
+}
+
+function postActivity() {
+    const memberSel = document.getElementById("act-member");
+    const typeSel = document.getElementById("act-type");
+    const dateEl = document.getElementById("act-date");
+    const noteEl = document.getElementById("act-note");
+    
+    const member = memberSel.value;
+    const type = typeSel.value;
+    const date = dateEl.value;
+    const note = noteEl.value.trim();
+    
+    if (!member) { showToast("推しメンを選んでね"); return; }
+    if (!date) { showToast("日付を選んでね"); return; }
+    
+    const acts = loadActivities();
+    acts.push({ member, type, date, note });
+    saveActivities(acts);
+    
+    memberSel.value = "";
+    dateEl.value = "";
+    noteEl.value = "";
+    renderActivities();
+    showToast("イベントを記録しました！");
+}
+
+function renderActivities() {
+    const el = document.getElementById("activity-list");
+    if (!el) return;
+    
+    const acts = loadActivities();
+    if (acts.length === 0) {
+        el.innerHTML = '<div class="wall-empty">まだイベントが登録されていません</div>';
+        return;
+    }
+    
+    el.innerHTML = acts.slice().reverse().map(act => {
+        const m = MEMBERS.find(x => x.name === act.member);
+        const gc = m ? GROUP_CLASS[m.group] : 'nogi';
+        const img = m ? `style="background-image:url('${m.img}')"` : '';
+        return `
+            <div class="activity-item">
+                <div class="activity-avatar ${gc} has-img" ${img}></div>
+                <div class="activity-body">
+                    <div class="activity-header">
+                        <span class="activity-name">${act.member}</span>
+                        <span class="activity-type">${act.type}</span>
+                    </div>
+                    <div class="activity-date">${act.date}</div>
+                    ${act.note ? `<div class="activity-note">${escapeHtml(act.note)}</div>` : ''}
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// ===== Gacha =====
+let gachaSpinning = false;
+
+function rollGacha() {
+    if (gachaSpinning) return;
+    
+    const display = document.getElementById("gacha-display");
+    const label = display.querySelector(".gacha-label");
+    
+    gachaSpinning = true;
+    label.textContent = "回転中…";
+    
+    let spins = 0;
+    const maxSpins = 15;
+    const interval = setInterval(() => {
+        const random = MEMBERS[Math.floor(Math.random() * MEMBERS.length)];
+        const gc = GROUP_CLASS[random.group];
+        display.innerHTML = `
+            <div class="gacha-avatar ${gc} has-img" style="background-image:url('${random.img}')"></div>
+            <div class="gacha-label">${random.name}</div>
+        `;
+        spins++;
+        
+        if (spins >= maxSpins) {
+            clearInterval(interval);
+            const result = MEMBERS[Math.floor(Math.random() * MEMBERS.length)];
+            const rgc = GROUP_CLASS[result.group];
+            display.innerHTML = `
+                <div class="gacha-avatar ${rgc} has-img" style="background-image:url('${result.img}')"></div>
+                <div class="gacha-label">${result.name}</div>
+            `;
+            showToast(`おめでとう！ ${result.name} が当選！`);
+            gachaSpinning = false;
+        }
+    }, 100);
+}
+
+// ===== Message Wall (Fixed) =====
 function loadWallMessages() {
     try {
         const raw = localStorage.getItem("yoruko-wall");
@@ -516,7 +583,7 @@ function renderWall() {
     const list = document.getElementById("wall-list");
     if (!select || !list) return;
     
-    // Populate select
+    // Populate select (only once)
     if (select.children.length <= 1) {
         MEMBERS.forEach(m => {
             const opt = document.createElement("option");
@@ -542,7 +609,9 @@ function renderWall() {
                 <div class="wall-msg-avatar ${gc} has-img" ${img}></div>
                 <div class="wall-msg-body">
                     <div class="wall-msg-header">
-                        <span class="wall-msg-name">${msg.member}</span>
+                        <span class="wall-msg-name">${escapeHtml(msg.fanname || '名無しファン')}</span>
+                        <span class="wall-msg-arrow">→</span>
+                        <span class="wall-msg-target">${msg.member}</span>
                         <span class="wall-msg-time">${msg.time}</span>
                     </div>
                     <div class="wall-msg-text">${escapeHtml(msg.text)}</div>
@@ -553,16 +622,20 @@ function renderWall() {
 }
 
 function postWall() {
-    const select = document.getElementById("wall-member");
+    const fannameEl = document.getElementById("wall-fanname");
+    const memberSel = document.getElementById("wall-member");
     const textEl = document.getElementById("wall-text");
-    const member = select.value;
+    
+    const fanname = fannameEl.value.trim() || "名無しファン";
+    const member = memberSel.value;
     const text = textEl.value.trim();
     
-    if (!member) { showToast("メンバーを選んでね"); return; }
+    if (!member) { showToast("推しメンを選んでね"); return; }
     if (!text) { showToast("メッセージを書いてね"); return; }
     
     const msgs = loadWallMessages();
     msgs.push({
+        fanname,
         member,
         text,
         time: new Date().toLocaleString('ja-JP', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
@@ -583,7 +656,7 @@ function escapeHtml(text) {
 // ===== Nav Highlight =====
 function initNav() {
     const links = document.querySelectorAll(".nav-link");
-    const sections = ["#home", "#gallery", "#cheer", "#calendar", "#chart", "#wall", "#about"];
+    const sections = ["#home", "#gallery-cheer", "#countdown-calendar", "#chart-songs", "#activity-gacha", "#wall", "#about"];
     window.addEventListener("scroll", () => {
         let current = "#home";
         sections.forEach(sel => {
@@ -604,6 +677,8 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCalendar();
     renderChart();
     renderSongs();
+    renderActivities();
+    initActivitySelect();
     renderWall();
     initNav();
 });

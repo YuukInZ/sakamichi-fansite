@@ -1105,3 +1105,166 @@ body {
     .dual-col .songs-grid { max-height: none; }
     .dual-col .calendar-wrap { grid-template-columns: 1fr; }
 }
+
+/* ===== Activity Log ===== */
+.activity-form {
+    max-width: 600px;
+    margin: 0 auto 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.activity-form .wall-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+.activity-form input[type="date"] {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 16px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+}
+.activity-list {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 280px;
+    overflow-y: auto;
+}
+.activity-item {
+    display: flex;
+    gap: 12px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    transition: all 0.2s ease;
+}
+.activity-item:hover { border-color: rgba(255,255,255,0.08); }
+.activity-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background-size: cover;
+    background-position: center top;
+    border: 2px solid transparent;
+}
+.activity-body { flex: 1; }
+.activity-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+}
+.activity-name { font-size: 0.9rem; font-weight: 700; }
+.activity-type {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: var(--accent-glow);
+    color: var(--accent);
+    border: 1px solid rgba(255,107,157,0.1);
+}
+.activity-date { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 4px; }
+.activity-note { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+
+/* ===== Gacha ===== */
+.gacha-machine {
+    background: linear-gradient(135deg, var(--bg-2), var(--bg-3));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px;
+    text-align: center;
+    max-width: 320px;
+    margin: 0 auto;
+}
+.gacha-display {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    overflow: hidden;
+    position: relative;
+}
+.gacha-question { font-size: 3rem; }
+.gacha-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+.gacha-avatar {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center top;
+    position: absolute;
+    inset: 0;
+}
+.gacha-btn {
+    padding: 14px 40px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, var(--accent), #ff8fab);
+    border: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    letter-spacing: 1px;
+}
+.gacha-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255,107,157,0.3); }
+.gacha-btn:active { transform: scale(0.97); }
+
+/* ===== Wall Form Row ===== */
+.wall-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+/* Wall message arrow */
+.wall-msg-arrow {
+    color: var(--text-dim);
+    font-size: 0.8rem;
+}
+.wall-msg-target {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.88rem;
+}
+
+/* Scrollbar */
+.songs-grid::-webkit-scrollbar,
+.activity-list::-webkit-scrollbar,
+.dual-col .songs-grid::-webkit-scrollbar {
+    width: 4px;
+}
+.songs-grid::-webkit-scrollbar-track,
+.activity-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+.songs-grid::-webkit-scrollbar-thumb,
+.activity-list::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+}
+
+/* Activity + Gacha dual section adjustments */
+#activity-gacha .dual-col .section-header { margin-bottom: 12px; }
+#activity-gacha .dual-col .section-header h2 { font-size: 1.3rem; }
+#activity-gacha .dual-col .section-header p { font-size: 0.8rem; }
