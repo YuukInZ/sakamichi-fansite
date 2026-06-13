@@ -1,75 +1,74 @@
-// ===== 坂道推し — 重构版 =====
+// ===== 有路口（よるこ）の推しランキング =====
 
-// 成员数据（带头像URL）
 const MEMBERS = [
     {
         rank: 1, name: "林瑠奈", group: "nogizaka", groupName: "乃木坂46", gen: "4期生",
-        birth: "2003年10月2日", hometown: "神奈川县",
-        note: "乃木坂46 4期生，以清澈嗓音和出色表现力著称。",
-        img: "https://n46db.com/pictures/profilepics/hayashi_runa.jpg",
+        birth: "2003年10月2日", hometown: "神奈川県",
+        note: "乃木坂46 4期生。透明感のある歌声と表現力でファンを魅了。",
+        img: "assets/images/hayashi_runa.jpg",
         cheer: 5
     },
     {
         rank: 2, name: "五百城茉央", group: "nogizaka", groupName: "乃木坂46", gen: "5期生",
-        birth: "2005年7月29日", hometown: "兵库县",
-        note: "乃木坂46 5期生，5期生中身高最高，散发温暖治愈氛围。",
-        img: "https://n46db.com/pictures/profilepics/ioki_mao.jpg",
+        birth: "2005年7月29日", hometown: "兵庫県",
+        note: "乃木坂46 5期生。5期生で最長身、癒し系の雰囲気が魅力。",
+        img: "assets/images/ioki_mao.jpg",
         cheer: 5
     },
     {
         rank: 3, name: "中西アルノ", group: "nogizaka", groupName: "乃木坂46", gen: "5期生",
-        birth: "2003年3月17日", hometown: "千叶县",
-        note: "乃木坂46 5期生，以独特气质和舞台魅力吸引众多粉丝。",
-        img: "https://n46db.com/pictures/profilepics/nakanishi_aruno.jpg",
+        birth: "2003年3月17日", hometown: "千葉県",
+        note: "乃木坂46 5期生。独特な雰囲気とステージでの魅力が光る。",
+        img: "assets/images/nakanishi_aruno.jpg",
         cheer: 5
     },
     {
-        rank: 4, name: "的野美青", group: "sakurazaka", groupName: "樱坂46", gen: "3期生",
-        birth: "2006年11月8日", hometown: "福冈县",
-        note: "樱坂46 3期生，福冈出身，初披露即担任前排站位。",
-        img: "https://n46db.com/pictures/k46/matono_mio.jpg",
+        rank: 4, name: "的野美青", group: "sakurazaka", groupName: "櫻坂46", gen: "3期生",
+        birth: "2006年11月8日", hometown: "福岡県",
+        note: "櫻坂46 3期生。お披露目時からフロント列を務める逸材。",
+        img: "assets/images/matono_mio.jpg",
         cheer: 4
     },
     {
         rank: 5, name: "弓木奈於", group: "nogizaka", groupName: "乃木坂46", gen: "4期生",
         birth: "1999年2月3日", hometown: "京都府",
-        note: "乃木坂46 4期生，京都出身，以成熟魅力和扎实唱功见长。",
-        img: "https://n46db.com/pictures/profilepics/yumiki_nao.jpg",
+        note: "乃木坂46 4期生。京都出身。大人な魅力と歌唱力が武器。",
+        img: "assets/images/yumiki_nao.jpg",
         cheer: 4
     },
     {
-        rank: 6, name: "高桥未来虹", group: "hinatazaka", groupName: "日向坂46", gen: "3期生",
-        birth: "2003年2月17日", hometown: "东京都",
-        note: "日向坂46 3期生，东京出身，以阳光笑容和多才多艺深受喜爱。",
-        img: "https://n46db.com/pictures/h46/takahashi_mikuni.jpg",
+        rank: 6, name: "高橋未来虹", group: "hinatazaka", groupName: "日向坂46", gen: "3期生",
+        birth: "2003年2月17日", hometown: "東京都",
+        note: "日向坂46 3期生。笑顔が素敵で多才なメンバー。",
+        img: "assets/images/takahashi_mikuni.jpg",
         cheer: 4
     },
     {
-        rank: 7, name: "正源司阳子", group: "hinatazaka", groupName: "日向坂46", gen: "4期生",
-        birth: "2007年2月14日", hometown: "兵库县",
-        note: "日向坂46 4期生，兵库县芦屋市出身，活泼元气的 youngest。",
-        img: "https://n46db.com/pictures/h46/shogenji_yoko.jpg",
+        rank: 7, name: "正源司陽子", group: "hinatazaka", groupName: "日向坂46", gen: "4期生",
+        birth: "2007年2月14日", hometown: "兵庫県",
+        note: "日向坂46 4期生。兵庫県芦屋市出身。元気いっぱいの最年少。",
+        img: "assets/images/shogenji_yoko.jpg",
         cheer: 4
     },
     {
-        rank: 8, name: "海边朱莉", group: "nogizaka", groupName: "乃木坂46", gen: "6期生",
-        birth: "2007年2月14日", hometown: "兵库县",
-        note: "乃木坂46 6期生，兵库县出身，与正源司阳子同天生日。",
-        img: "https://n46db.com/pictures/profilepics/kaibe_akari.jpg",
+        rank: 8, name: "海邉朱莉", group: "nogizaka", groupName: "乃木坂46", gen: "6期生",
+        birth: "2007年2月14日", hometown: "兵庫県",
+        note: "乃木坂46 6期生。正源司陽子と同じ2月14日生まれ。",
+        img: "assets/images/kaibe_akari.jpg",
         cheer: 3
     },
     {
-        rank: 9, name: "濑户口心月", group: "nogizaka", groupName: "乃木坂46", gen: "6期生",
-        birth: "2005年7月16日", hometown: "鹿儿岛县",
-        note: "乃木坂46 6期生，鹿儿岛出身，带着南国阳光气息的新星。",
-        img: "https://n46db.com/pictures/profilepics/setoguchi_mitsuki.jpg",
+        rank: 9, name: "瀬戸口心月", group: "nogizaka", groupName: "乃木坂46", gen: "6期生",
+        birth: "2005年7月16日", hometown: "鹿児島県",
+        note: "乃木坂46 6期生。南国鹿児島出身の新星。",
+        img: "assets/images/setoguchi_mitsuki.jpg",
         cheer: 3
     },
     {
-        rank: 10, name: "山田桃实", group: "sakurazaka", groupName: "樱坂46", gen: "4期生",
-        birth: "2008年7月20日", hometown: "冈山县",
-        note: "樱坂46 4期生，冈山县出身，16岁入团的新生代。",
-        img: "https://n46db.com/pictures/k46/yamada_momomi.jpg",
+        rank: 10, name: "山田桃実", group: "sakurazaka", groupName: "櫻坂46", gen: "4期生",
+        birth: "2008年7月20日", hometown: "岡山県",
+        note: "櫻坂46 4期生。岡山県出身の16歳の新星。",
+        img: "assets/images/yamada_momomi.jpg",
         cheer: 3
     },
 ];
@@ -81,13 +80,6 @@ function getRankClass(rank) {
     if (rank === 2) return "silver";
     if (rank === 3) return "bronze";
     return "normal";
-}
-
-function avatarStyle(m) {
-    if (m.img) return `background-image:url('${m.img}')`;
-    const gc = GROUP_CLASS[m.group];
-    const initials = { nogi: "林", saku: "野", hina: "橋" };
-    return "";
 }
 
 function getInitial(m) {
@@ -107,20 +99,16 @@ function renderTop3() {
     const el = document.getElementById("rank-top3");
     if (!el) return;
     const top3 = MEMBERS.filter(m => m.rank <= 3);
-    // 排序: #2, #1, #3（中间大）
     const order = [top3.find(m => m.rank === 2), top3.find(m => m.rank === 1), top3.find(m => m.rank === 3)];
     
-    el.innerHTML = order.map((m, i) => {
+    el.innerHTML = order.map((m) => {
         const gc = GROUP_CLASS[m.group];
         const rc = getRankClass(m.rank);
         const isFirst = m.rank === 1;
-        const imgHtml = m.img
-            ? `<div class="top3-avatar ${gc} has-img" style="background-image:url('${m.img}')"></div>`
-            : `<div class="top3-avatar ${gc}">${getInitial(m)}</div>`;
         return `
             <div class="top3-card ${isFirst ? 'first' : ''}" data-group="${m.group}">
                 <div class="top3-rank ${rc}">${isFirst ? '👑' : ''} #${m.rank}</div>
-                ${imgHtml}
+                <div class="top3-avatar ${gc} has-img" style="background-image:url('${m.img}')"></div>
                 <div class="top3-name">${m.name}</div>
                 <div class="top3-group">${m.groupName} · ${m.gen}</div>
             </div>
@@ -137,13 +125,10 @@ function renderRanking() {
     el.innerHTML = rest.map(m => {
         const gc = GROUP_CLASS[m.group];
         const rc = getRankClass(m.rank);
-        const imgHtml = m.img
-            ? `<div class="rank-avatar ${gc} has-img" style="background-image:url('${m.img}')"></div>`
-            : `<div class="rank-avatar ${gc}">${getInitial(m)}</div>`;
         return `
             <div class="rank-card" data-group="${m.group}">
                 <div class="rank-num ${rc}">#${m.rank}</div>
-                ${imgHtml}
+                <div class="rank-avatar ${gc} has-img" style="background-image:url('${m.img}')"></div>
                 <div class="rank-info">
                     <div class="rank-name">${m.name}
                         <span class="rank-tag ${gc}">${m.groupName} · ${m.gen}</span>
@@ -174,19 +159,15 @@ function renderGallery() {
     if (!el) return;
     el.innerHTML = MEMBERS.map(m => {
         const gc = GROUP_CLASS[m.group];
-        const imgHtml = m.img
-            ? `<div class="g-avatar ${gc} has-img" style="background-image:url('${m.img}')"></div>`
-            : `<div class="g-avatar ${gc}">${getInitial(m)}</div>`;
         return `
             <div class="gallery-card" data-group="${m.group}">
-                ${imgHtml}
+                <div class="g-avatar ${gc} has-img" style="background-image:url('${m.img}')"></div>
                 <div class="g-name">${m.name}</div>
                 <div class="g-group">${m.groupName} ${m.gen}</div>
             </div>
         `;
     }).join("");
     
-    // 筛选
     document.querySelectorAll(".g-filter").forEach(btn => {
         btn.addEventListener("click", () => {
             document.querySelectorAll(".g-filter").forEach(b => b.classList.remove("active"));
@@ -206,14 +187,11 @@ function renderCheer() {
     
     el.innerHTML = MEMBERS.map(m => {
         const gc = GROUP_CLASS[m.group];
-        const imgHtml = m.img
-            ? `<div class="cheer-avatar ${gc} has-img" style="background-image:url('${m.img}')"></div>`
-            : `<div class="cheer-avatar ${gc}">${getInitial(m)}</div>`;
         const pct = (m.cheer / 5) * 100;
         return `
             <div class="cheer-card" data-rank="${m.rank}">
                 <div class="cheer-card-header">
-                    ${imgHtml}
+                    <div class="cheer-avatar ${gc} has-img" style="background-image:url('${m.img}')"></div>
                     <div class="cheer-info">
                         <h4>${m.name}</h4>
                         <span>${m.groupName} · ${m.gen}</span>
@@ -244,7 +222,6 @@ function renderCountdown() {
     const el = document.getElementById("countdown-card");
     if (!el) return;
     
-    // 计算下一个生日
     const now = new Date();
     const currentYear = now.getFullYear();
     const birthdays = MEMBERS.map(m => {
