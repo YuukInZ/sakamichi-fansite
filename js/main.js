@@ -646,6 +646,141 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
+// ===== Particle Background =====
+function initParticles() {
+    const canvas = document.getElementById("particle-canvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    
+    let width, height;
+    function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener("resize", resize);
+    
+    const particleCount = Math.min(120, Math.floor(window.innerWidth / 12));
+    const particles = [];
+    
+    const colors = [
+        "rgba(255,107,157,",    // pink
+        "rgba(155,89,182,",     // purple
+        "rgba(135,206,235,",    // sky
+        "rgba(255,215,0,",      // gold
+        "rgba(255,105,180,"     // hotpink
+    ];
+    
+    class Particle {
+        constructor() {
+            this.reset();
+        }
+        
+        reset() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.size = Math.random() * 2.5 + 0.5;
+            this.speedX = (Math.random() - 0.5) * 0.4;
+            this.speedY = (Math.random() - 0.5) * 0.4;
+            this.opacity = Math.random() * 0.5 + 0.1;
+            this.fadeSpeed = Math.random() * 0.003 + 0.001;
+            this.fadeDir = 1;
+            this.colorIdx = Math.floor(Math.random() * colors.length);
+        }
+        
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            
+            // Wrap around
+            if (this.x < -10) this.x = width + 10;
+            if (this.x > width + 10) this.x = -10;
+            if (this.y < -10) this.y = height + 10;
+            if (this.y > height + 10) this.y = -10;
+            
+            // Twinkle
+            this.opacity += this.fadeSpeed * this.fadeDir;
+            if (this.opacity > 0.6 || this.opacity < 0.1) {
+                this.fadeDir *= -1;
+            }
+        }
+        
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = colors[this.colorIdx] + this.opacity + ")";
+            ctx.fill();
+            
+            // Glow for larger particles
+            if (this.size > 2) {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+                ctx.fillStyle = colors[this.colorIdx] + (this.opacity * 0.15) + ")";
+                ctx.fill();
+            }
+        }
+    }
+    
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+    
+    // Mouse interaction
+    let mouseX = -1000, mouseY = -1000;
+    document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+    
+    function drawLines() {
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                if (dist < 120) {
+                    const alpha = (1 - dist / 120) * 0.08;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = `rgba(255,107,157,${alpha})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                }
+            }
+            
+            // Mouse connection
+            const mdx = particles[i].x - mouseX;
+            const mdy = particles[i].y - mouseY;
+            const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
+            if (mDist < 200) {
+                const alpha = (1 - mDist / 200) * 0.15;
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(mouseX, mouseY);
+                ctx.strokeStyle = `rgba(255,215,0,${alpha})`;
+                ctx.lineWidth = 0.8;
+                ctx.stroke();
+            }
+        }
+    }
+    
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
+        
+        drawLines();
+        requestAnimationFrame(animate);
+    }
+    
+    animate();
+}
+
 // ===== Nav Highlight =====
 function initNav() {
     const links = document.querySelectorAll(".nav-link");
@@ -662,6 +797,7 @@ function initNav() {
 
 // ===== Init =====
 document.addEventListener("DOMContentLoaded", () => {
+    initParticles();
     renderTop3();
     renderRanking();
     renderGallery();
