@@ -132,8 +132,8 @@ function renderTop3() {
                 <div class="top3-avatar ${gc} has-img" style="background-image:url('${m.img}')"></div>
                 <div class="top3-name">${m.name}</div>
                 <div class="top3-group">${m.groupName} · ${m.gen}</div>
-                <div class="top3-score" data-score="${m.score}">
-                    <span class="score-label">推し度</span>
+                <div class="top3-score ${m.score >= 90 ? 'score-high' : m.score >= 75 ? 'score-good' : 'score-normal'}">
+                    <span class="score-label">推度</span>
                     <span class="score-num">${m.score}</span>
                 </div>
             </div>
@@ -163,8 +163,8 @@ function renderRanking() {
                         <span><span class="dot"></span>${m.hometown}出身</span>
                     </div>
                 </div>
-                <div class="rank-score" data-score="${m.score}">
-                    <span class="score-label">推し度</span>
+                <div class="rank-score ${m.score >= 90 ? 'score-high' : m.score >= 75 ? 'score-good' : 'score-normal'}">
+                    <span class="score-label">推度</span>
                     <span class="score-num">${m.score}</span>
                 </div>
             </div>
@@ -351,7 +351,7 @@ function renderChart() {
         data: {
             labels: MEMBERS.map(m => m.name),
             datasets: [{
-                label: '推し度',
+                label: '推度',
                 data: MEMBERS.map(m => m.score),
                 backgroundColor: MEMBERS.map(m => GROUP_COLORS[m.group] + 'cc'),
                 borderColor: MEMBERS.map(m => GROUP_COLORS[m.group]),
