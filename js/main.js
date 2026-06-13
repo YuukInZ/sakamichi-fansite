@@ -27,7 +27,7 @@ const MEMBERS = [
         rank: 4, name: "的野美青", group: "sakurazaka", groupName: "樱坂46", gen: "3期生",
         birth: "2006年11月8日", hometown: "福冈县",
         note: "樱坂46 3期生，福冈出身，初披露即担任前排站位。",
-        img: "",
+        img: "https://n46db.com/pictures/k46/matono_mio.jpg",
         cheer: 4
     },
     {
@@ -41,14 +41,14 @@ const MEMBERS = [
         rank: 6, name: "高桥未来虹", group: "hinatazaka", groupName: "日向坂46", gen: "3期生",
         birth: "2003年2月17日", hometown: "东京都",
         note: "日向坂46 3期生，东京出身，以阳光笑容和多才多艺深受喜爱。",
-        img: "",
+        img: "https://n46db.com/pictures/h46/takahashi_mikuni.jpg",
         cheer: 4
     },
     {
         rank: 7, name: "正源司阳子", group: "hinatazaka", groupName: "日向坂46", gen: "4期生",
         birth: "2007年2月14日", hometown: "兵库县",
         note: "日向坂46 4期生，兵库县芦屋市出身，活泼元气的 youngest。",
-        img: "",
+        img: "https://n46db.com/pictures/h46/shogenji_yoko.jpg",
         cheer: 4
     },
     {
@@ -69,7 +69,7 @@ const MEMBERS = [
         rank: 10, name: "山田桃实", group: "sakurazaka", groupName: "樱坂46", gen: "4期生",
         birth: "2008年7月20日", hometown: "冈山县",
         note: "樱坂46 4期生，冈山县出身，16岁入团的新生代。",
-        img: "",
+        img: "https://n46db.com/pictures/k46/yamada_momomi.jpg",
         cheer: 3
     },
 ];
