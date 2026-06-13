@@ -784,7 +784,7 @@ body {
 
 /* ===== Dual Layout ===== */
 .dual-section { padding: 30px 0; position: relative; z-index: 2; }
-.dual-section.alt { background: var(--bg-1); }
+.dual-section.alt { background: rgba(15, 15, 26, 0.6); backdrop-filter: blur(4px); }
 .dual-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
