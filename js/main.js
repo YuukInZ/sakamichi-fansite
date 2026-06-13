@@ -90,12 +90,34 @@ const MEMBERS = [
     },
 ];
 
-// 生成随机推度分数(60-100)
+// 推度分数 - 按排名递减(100 ~ 64)
 MEMBERS.forEach(m => {
-    m.score = Math.floor(Math.random() * 41) + 60; // 60-100
+    m.score = 100 - (m.rank - 1) * 4;
 });
 
 const GROUP_CLASS = { nogizaka: "nogi", sakurazaka: "saku", hinatazaka: "hina" };
+
+// 从localStorage加载用户自定义推曲
+function loadCustomSongs() {
+    try {
+        const raw = localStorage.getItem("yoruko-songs");
+        if (!raw) return;
+        const custom = JSON.parse(raw);
+        Object.keys(custom).forEach(name => {
+            const m = MEMBERS.find(x => x.name === name);
+            if (m) m.songs = custom[name];
+        });
+    } catch {}
+}
+loadCustomSongs();
+
+function saveCustomSongs() {
+    const custom = {};
+    MEMBERS.forEach(m => {
+        custom[m.name] = m.songs;
+    });
+    localStorage.setItem("yoruko-songs", JSON.stringify(custom));
+}
 const GROUP_COLORS = { nogizaka: "#9b59b6", sakurazaka: "#ff69b4", hinatazaka: "#87ceeb" };
 
 function getRankClass(rank) {
@@ -600,6 +622,7 @@ function addSong(rank) {
     if (!title) { showToast("曲名を入力してね"); return; }
     
     m.songs.push({ title, type });
+    saveCustomSongs();
     showToast(`${m.name}の「${title}」を追加しました！`);
     openSongEditor();
     renderSongs();
@@ -611,6 +634,7 @@ function deleteSong(rank, songIndex) {
     
     const song = m.songs[songIndex];
     m.songs.splice(songIndex, 1);
+    saveCustomSongs();
     showToast(`「${song.title}」を削除しました`);
     openSongEditor();
     renderSongs();
