@@ -5,40 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>坂道推しランキング — Sakamichi TOP10</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="bg-glow"></div>
+    <div class="particles" id="particles"></div>
     
     <nav class="navbar">
-        <div class="nav-brand">◆ 坂道推し</div>
+        <div class="nav-brand">
+            <span class="brand-icon">◆</span>
+            <span>坂道推し</span>
+        </div>
         <div class="nav-links">
             <a href="#home" class="nav-link active">ランキング</a>
+            <a href="#gallery" class="nav-link">図鑑</a>
+            <a href="#cheer" class="nav-link">推し活</a>
             <a href="#about" class="nav-link">About</a>
         </div>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
 
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="hero-badge">坂道シリーズ · 推しランキング</div>
             <h1 class="hero-title">
-                <span class="title-glow">推しメン</span>
-                <span class="title-sub">TOP 10</span>
+                <span class="title-line">推しメン</span>
+                <span class="title-line title-glow">TOP 10</span>
             </h1>
-            <p class="hero-desc">乃木坂46 · 櫻坂46 · 日向坂46 · 推しランキング</p>
-        </div>
-    </section>
-
-    <section class="ranking">
-        <div class="container">
-            <div class="rank-list" id="rank-list">
-                <!-- JS 渲染 -->
+            <p class="hero-desc">乃木坂46 · 櫻坂46 · 日向坂46 · 個人推しランキング</p>
+            <div class="hero-stats">
+                <div class="hstat">
+                    <span class="hstat-num">6</span>
+                    <span class="hstat-label">乃木坂</span>
+                </div>
+                <div class="hstat">
+                    <span class="hstat-num">2</span>
+                    <span class="hstat-label">櫻坂</span>
+                </div>
+                <div class="hstat">
+                    <span class="hstat-num">2</span>
+                    <span class="hstat-label">日向坂</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="about">
+    <section class="ranking-section">
+        <div class="container">
+            <div class="rank-top3" id="rank-top3"></div>
+            <div class="rank-list" id="rank-list"></div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">メンバー図鑑</span>
+                <h2>推し図鑑</h2>
+                <p>全メンバーのプロフィール</p>
+            </div>
+            <div class="gallery-filters">
+                <button class="g-filter active" data-filter="all">全員</button>
+                <button class="g-filter" data-filter="nogizaka">乃木坂46</button>
+                <button class="g-filter" data-filter="sakurazaka">櫻坂46</button>
+                <button class="g-filter" data-filter="hinatazaka">日向坂46</button>
+            </div>
+            <div class="gallery-grid" id="gallery-grid"></div>
+        </div>
+    </section>
+
+    <section id="cheer" class="cheer-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">推し活</span>
+                <h2>応援パネル</h2>
+                <p>推しへの応援度を記録</p>
+            </div>
+            <div class="cheer-cards" id="cheer-cards"></div>
+        </div>
+    </section>
+
+    <section class="countdown-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">次のお誕生日</span>
+                <h2>誕生日カウントダウン</h2>
+            </div>
+            <div class="countdown-card" id="countdown-card"></div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
         <div class="container">
             <h2>About</h2>
             <p>個人ファンサイト。推しメンバーを記録しています。</p>
@@ -51,9 +111,10 @@
     </section>
 
     <footer class="footer">
-        <p>© 2025 坂道推し · 個人ファンサイト</p>
+        <p>© 2025 坂道推し · 個人ファンサイト · 非公式</p>
     </footer>
 
+    <div class="toast" id="toast"></div>
     <script src="js/main.js"></script>
 </body>
 </html>
