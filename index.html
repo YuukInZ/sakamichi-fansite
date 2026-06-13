@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>有路口（よるこ）の推しランキング</title>
+    <title>よるこの推しランキング — Sakamichi TOP10</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="bg-glow"></div>
@@ -20,6 +21,9 @@
             <a href="#home" class="nav-link active">ランキング</a>
             <a href="#gallery" class="nav-link">図鑑</a>
             <a href="#cheer" class="nav-link">推し活</a>
+            <a href="#calendar" class="nav-link">カレンダー</a>
+            <a href="#chart" class="nav-link">チャート</a>
+            <a href="#wall" class="nav-link">メッセージ</a>
             <a href="#about" class="nav-link">About</a>
         </div>
         <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">
@@ -27,6 +31,7 @@
         </button>
     </nav>
 
+    <!-- Hero -->
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="hero-badge">よるこの推しランキング</div>
@@ -36,22 +41,14 @@
             </h1>
             <p class="hero-desc">乃木坂46 · 櫻坂46 · 日向坂46 · 個人推しランキング</p>
             <div class="hero-stats">
-                <div class="hstat">
-                    <span class="hstat-num">6</span>
-                    <span class="hstat-label">乃木坂</span>
-                </div>
-                <div class="hstat">
-                    <span class="hstat-num">2</span>
-                    <span class="hstat-label">櫻坂</span>
-                </div>
-                <div class="hstat">
-                    <span class="hstat-num">2</span>
-                    <span class="hstat-label">日向坂</span>
-                </div>
+                <div class="hstat"><span class="hstat-num">6</span><span class="hstat-label">乃木坂</span></div>
+                <div class="hstat"><span class="hstat-num">2</span><span class="hstat-label">櫻坂</span></div>
+                <div class="hstat"><span class="hstat-num">2</span><span class="hstat-label">日向坂</span></div>
             </div>
         </div>
     </section>
 
+    <!-- Ranking -->
     <section class="ranking-section">
         <div class="container">
             <div class="rank-top3" id="rank-top3"></div>
@@ -59,12 +56,13 @@
         </div>
     </section>
 
+    <!-- Gallery -->
     <section id="gallery" class="gallery-section">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">メンバー図鑑</span>
                 <h2>推し図鑑</h2>
-                <p>全メンバーのプロフィール</p>
+                <p>全メンバーのプロフィール · タップで詳細</p>
             </div>
             <div class="gallery-filters">
                 <button class="g-filter active" data-filter="all">全員</button>
@@ -76,6 +74,7 @@
         </div>
     </section>
 
+    <!-- Cheer -->
     <section id="cheer" class="cheer-section">
         <div class="container">
             <div class="section-header">
@@ -87,6 +86,7 @@
         </div>
     </section>
 
+    <!-- Countdown -->
     <section class="countdown-section">
         <div class="container">
             <div class="section-header">
@@ -97,10 +97,68 @@
         </div>
     </section>
 
+    <!-- Calendar -->
+    <section id="calendar" class="calendar-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">年間カレンダー</span>
+                <h2>推し誕生日カレンダー</h2>
+                <p>全メンバーの誕生日を確認</p>
+            </div>
+            <div class="calendar-wrap" id="calendar-wrap"></div>
+        </div>
+    </section>
+
+    <!-- Chart -->
+    <section id="chart" class="chart-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">データ可視化</span>
+                <h2>推し度チャート</h2>
+                <p>全メンバーの応援度を比較</p>
+            </div>
+            <div class="chart-wrap">
+                <canvas id="cheerChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- Songs -->
+    <section class="songs-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">楽曲</span>
+                <h2>推し曲コレクション</h2>
+                <p>メンバー別おすす楽曲</p>
+            </div>
+            <div class="songs-grid" id="songs-grid"></div>
+        </div>
+    </section>
+
+    <!-- Message Wall -->
+    <section id="wall" class="wall-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">ファン交流</span>
+                <h2>推しメッセージ</h2>
+                <p>推しへメッセージを送る</p>
+            </div>
+            <div class="wall-form">
+                <select id="wall-member" class="wall-select">
+                    <option value="">メンバーを選択</option>
+                </select>
+                <textarea id="wall-text" class="wall-input" placeholder="推しへのメッセージを書いてね…" rows="3"></textarea>
+                <button class="wall-submit" onclick="postWall()">送信</button>
+            </div>
+            <div class="wall-list" id="wall-list"></div>
+        </div>
+    </section>
+
+    <!-- About -->
     <section id="about" class="about-section">
         <div class="container">
             <h2>About</h2>
-            <p>有路口（よるこ）の個人ファンサイト。推しメンバーを記録しています。</p>
+            <p>よるこの個人ファンサイト。推しメンバーを記録しています。</p>
             <p class="about-groups">
                 <span class="tag-nogi">乃木坂46</span>
                 <span class="tag-saku">櫻坂46</span>
@@ -110,8 +168,16 @@
     </section>
 
     <footer class="footer">
-        <p>© 2025 有路口（よるこ） · 個人ファンサイト · 非公式</p>
+        <p>© 2025 よるこ · 個人ファンサイト · 非公式</p>
     </footer>
+
+    <!-- Member Modal -->
+    <div class="modal-overlay" id="modal-overlay" onclick="closeModal()">
+        <div class="modal-body" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div id="modal-content"></div>
+        </div>
+    </div>
 
     <div class="toast" id="toast"></div>
     <script src="js/main.js"></script>
